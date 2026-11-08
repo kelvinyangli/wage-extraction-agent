@@ -1,0 +1,86 @@
+{
+  "01-two-employers.pdf": {
+    "pages": [
+      {
+        "page_number": 1,
+        "text": "North Example Services - Payslip\nEmployee: Test Worker 001 Employee ID: SYN-001\nPeriod: 01/10/2026 to 14/10/2026 Paid: 15/10/2026\nCurrency: AUD\nBase Pay 40 30.00 1200.00\nOT 1.5x 4 45.00 180.00\nGross: 1380.00 PAYG: -200.00 Net: 1180.00",
+        "tables": [],
+        "ocr_confidence": null
+      },
+      {
+        "page_number": 2,
+        "text": "South Example Workshop - Payment advice\nPay date: 16/10/2026 Cycle: 05/10/2026 to 11/10/2026\nWorker: Test Worker 001 Payroll number: SOUTH-8\nCurrency: AUD\nOrdinary Hours 20 40.00 800.00\nTool Allowance 1 40.00 40.00\nTotal gross: 840.00 Tax: -100.00 Net: 740.00",
+        "tables": [],
+        "ocr_confidence": null
+      }
+    ]
+  },
+  "02-multipage-payslip.pdf": {
+    "pages": [
+      {
+        "page_number": 1,
+        "text": "North Example Services - Payslip 1 of 2\nEmployee: Test Worker 001 Slip ID: SYN-MULTI-01\nPeriod: 15/10/2026 to 28/10/2026 Paid: 29/10/2026\nCurrency: AUD\nBase Pay 40 hours Rate 30.00 Amount 1200.00\nContinued on next page.",
+        "tables": [],
+        "ocr_confidence": null
+      },
+      {
+        "page_number": 2,
+        "text": "North Example Services - Payslip 2 of 2\nEmployee: Test Worker 001 Slip ID: SYN-MULTI-01\nPeriod: 15/10/2026 to 28/10/2026\nOvertime 4 hours Rate 45.00 Amount 180.00\nGross: 1380.00 PAYG: -200.00 Net: 1180.00",
+        "tables": [],
+        "ocr_confidence": null
+      }
+    ]
+  },
+  "03-pay-summary.pdf": {
+    "pages": [
+      {
+        "page_number": 1,
+        "text": "South Example Workshop - Pay item summary\nEmployee: Test Worker 001 Currency: AUD\n01/10/2026 07/10/2026 08/10/2026 Ordinary Hours 800.00\n01/10/2026 07/10/2026 08/10/2026 Tool Allowance 40.00\n08/10/2026 14/10/2026 15/10/2026 Ordinary Hours 900.00\n08/10/2026 14/10/2026 15/10/2026 Annual Leave 160.00\nNo totals or deductions are supplied.",
+        "tables": [],
+        "ocr_confidence": null
+      }
+    ]
+  },
+  "04-duplicates-conflicts.pdf": {
+    "pages": [
+      {
+        "page_number": 1,
+        "text": "North Example Services - Duplicate and conflict fixture\nEmployee: Test Worker 001 Currency: AUD\nPeriod: 01/11/2026 to 07/11/2026 Paid: 08/11/2026\nBase Pay 20 hours Rate 40.00 Amount 800.00\nMeal Allowance Amount 30.00\nMeal Allowance Amount 30.00\nPrinted gross: 860.00\nPrinted gross: 890.00\nPAYG: -100.00 Net: 760.00",
+        "tables": [],
+        "ocr_confidence": null
+      }
+    ]
+  },
+  "05-partial-and-unresolved.pdf": {
+    "pages": [
+      {
+        "page_number": 1,
+        "text": "North Example Services - Partial fixture\nEmployee: Test Worker 001 Currency: AUD\nPeriod: 08/11/2026 to 14/11/2026 Paid: 15/11/2026\nBase Pay 20 hours Rate 40.00 Amount 800.00\nMeal Allowance Amount [OBSCURED]\nGross: 830.00 PAYG: -100.00 Net: 730.00",
+        "tables": [],
+        "ocr_confidence": null
+      },
+      {
+        "page_number": 2,
+        "text": "Unidentified continuation\nEmployee: Test Worker 001\nAdjustment Amount 25.00\nEmployer, pay period and payslip identifier are missing.",
+        "tables": [],
+        "ocr_confidence": null
+      },
+      {
+        "page_number": 3,
+        "text": "South Example Workshop - Complete payslip\nEmployee: Test Worker 001 Currency: AUD\nPeriod: 08/11/2026 to 14/11/2026 Paid: 15/11/2026\nOrdinary Hours 10 hours Rate 40.00 Amount 400.00\nGross: 400.00 PAYG: -50.00 Net: 350.00",
+        "tables": [],
+        "ocr_confidence": null
+      }
+    ]
+  },
+  "06-total-mismatch.pdf": {
+    "pages": [
+      {
+        "page_number": 1,
+        "text": "North Example Services - Mismatch fixture\nEmployee: Test Worker 001 Currency: AUD\nPeriod: 15/11/2026 to 21/11/2026 Paid: 22/11/2026\nBase Pay Amount 800.00\nMeal Allowance Amount 30.00\nPrinted gross: 831.00 PAYG: -100.00 Net: 731.00\nNo higher-precision source amounts are provided.",
+        "tables": [],
+        "ocr_confidence": null
+      }
+    ]
+  }
+}

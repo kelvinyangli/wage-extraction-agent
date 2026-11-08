@@ -1,0 +1,47 @@
+{
+  "bundle_version": "prompt-bundle-v2",
+  "schema_version": "schema-v2",
+  "status": "approved-prototype-baseline",
+  "created_date": "2026-11-08",
+  "approval": "Approved reconciliation-source clarification by the Data Scientist on 2026-11-08.",
+  "evaluation_reference": "docs/evaluation-plan.md; synthetic expected-result regression suite.",
+  "common_files": [
+    "common/system-scope.md",
+    "common/untrusted-content.md",
+    "common/evidence-rules.md"
+  ],
+  "stages": {
+    "segment_documents": {
+      "file": "stages/segment-documents.md",
+      "required_variables": ["document_context", "output_schema"]
+    },
+    "extract_payslip": {
+      "file": "stages/extract-payslip.md",
+      "required_variables": ["document_context", "output_schema"]
+    },
+    "classify_unfamiliar_group_labels": {
+      "file": "stages/classify-group-label.md",
+      "required_variables": ["item_context", "approved_labels", "output_schema"]
+    },
+    "schema_repair_once": {
+      "file": "stages/schema-repair.md",
+      "required_variables": ["document_context", "invalid_output", "validation_errors", "allowed_field_paths", "output_schema"]
+    },
+    "interpret_total_relationships": {
+      "file": "stages/interpret-total-relationship.md",
+      "required_variables": ["payslip_context", "printed_total", "output_schema"]
+    },
+    "llm_as_a_judge": {
+      "file": "stages/llm-judge.md",
+      "required_variables": ["source_evidence", "extraction", "relationship", "deterministic_result", "output_schema"]
+    },
+    "retry_affected_extraction": {
+      "file": "stages/retry-extraction.md",
+      "required_variables": ["source_evidence", "current_values", "judge_reason", "allowed_field_paths", "output_schema"]
+    },
+    "retry_reconciliation_item_selection": {
+      "file": "stages/retry-item-selection.md",
+      "required_variables": ["source_evidence", "items", "printed_total", "judge_reason", "output_schema"]
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "fixture_type": "synthetic design-review fixtures; not actual DI output",
+  "cases": [
+    {
+      "file": "01-two-employers.pdf",
+      "pages": 2,
+      "expected": {
+        "payslips": 2,
+        "employers": 2,
+        "earnings_amounts": [
+          [
+            1200,
+            180
+          ],
+          [
+            800,
+            40
+          ]
+        ],
+        "gross_checks": [
+          "matched",
+          "matched"
+        ],
+        "note": "Do not merge records for the same employee across employers."
+      }
+    },
+    {
+      "file": "02-multipage-payslip.pdf",
+      "pages": 2,
+      "expected": {
+        "payslips": 1,
+        "source_pages": [
+          1,
+          2
+        ],
+        "item_count": 3,
+        "gross_check": "matched",
+        "net_check": "matched"
+      }
+    },
+    {
+      "file": "03-pay-summary.pdf",
+      "pages": 1,
+      "expected": {
+        "document_type": "pay_summary",
+        "payment_rows": 4,
+        "pay_periods": 2,
+        "amounts": [
+          800,
+          40,
+          900,
+          160
+        ],
+        "groups": [
+          "Gross",
+          "Allowances",
+          "Gross",
+          "Paid leave"
+        ],
+        "reconciliation": "unable_to_check",
+        "note": "Do not invent printed totals or payslip boundaries."
+      }
+    },
+    {
+      "file": "04-duplicates-conflicts.pdf",
+      "pages": 1,
+      "expected": {
+        "payslips": 1,
+        "duplicate_rows_preserved": 2,
+        "conflicting_gross_values": [
+          860,
+          890
+        ],
+        "reconciliation": "unable_to_check",
+        "note": "Preserve both gross values and both allowance rows. Do not silently choose a total or deduplicate."
+      }
+    },
+    {
+      "file": "05-partial-and-unresolved.pdf",
+      "pages": 3,
+      "expected": {
+        "identified_payslips": 2,
+        "unresolved_sections": 1,
+        "page1_status": "partial",
+        "unreadable_allowance_amount": null,
+        "page1_gross_check": "unable_to_check",
+        "page3_status": "successful",
+        "note": "Never back-calculate the obscured amount. Continue processing page 3."
+      }
+    },
+    {
+      "file": "06-total-mismatch.pdf",
+      "pages": 1,
+      "expected": {
+        "payslips": 1,
+        "calculated_gross": 830,
+        "printed_gross": 831,
+        "difference_calculated_minus_printed": -1,
+        "gross_check": "mismatched",
+        "net_check": "matched",
+        "rounding": "unproven",
+        "note": "Keep printed gross 831.00 unchanged. Do not label as confirmed rounding."
+      }
+    }
+  ],
+  "mock_service_failures": [
+    {
+      "file": "01-two-employers.pdf",
+      "injected_error": "OCR_SERVICE_TIMEOUT",
+      "expected": "File failed; other files continue. Inject at service adapter, not by corrupting a PDF."
+    }
+  ]
+}

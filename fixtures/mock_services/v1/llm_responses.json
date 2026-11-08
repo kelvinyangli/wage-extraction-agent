@@ -1,0 +1,226 @@
+{
+  "segment_documents": {
+    "default": {
+      "payslips": [
+        {
+          "signals": [],
+          "decision": "new_payslip",
+          "reason": "Mock fixture identifies a new payslip.",
+          "source_pages": [1]
+        }
+      ],
+      "unresolved_sections": []
+    },
+    "multipage_continuation": {
+      "payslips": [
+        {
+          "signals": [
+            {
+              "signal_type": "page_continuity",
+              "source_value": "Payslip 2 of 2",
+              "source_page": 2,
+              "location": null
+            }
+          ],
+          "decision": "same_payslip",
+          "reason": "Matching identity and continuation heading.",
+          "source_pages": [1, 2]
+        }
+      ],
+      "unresolved_sections": []
+    },
+    "unresolved": {
+      "payslips": [],
+      "unresolved_sections": [
+        {
+          "section_id": "unresolved-1",
+          "source_pages": [2],
+          "raw_text": "Unidentified continuation",
+          "readable_fields": [],
+          "reason": "Employer and pay period are missing.",
+          "issues": []
+        }
+      ]
+    },
+    "two_payslips": {
+      "payslips": [
+        {"signals": [], "decision": "new_payslip", "reason": "First employer payslip.", "source_pages": [1]},
+        {"signals": [], "decision": "new_payslip", "reason": "Employer boundary starts a second payslip.", "source_pages": [2]}
+      ],
+      "unresolved_sections": []
+    },
+    "partial_and_unresolved": {
+      "payslips": [
+        {"signals": [], "decision": "new_payslip", "reason": "Identified first payslip.", "source_pages": [1]},
+        {"signals": [], "decision": "new_payslip", "reason": "Identified later independent payslip.", "source_pages": [3]}
+      ],
+      "unresolved_sections": [
+        {
+          "section_id": "unresolved-page-2",
+          "source_pages": [2],
+          "raw_text": "Unidentified continuation",
+          "readable_fields": [],
+          "reason": "Employer and pay period are missing.",
+          "issues": []
+        }
+      ]
+    }
+  },
+  "extract_payslip": {
+    "default": {
+      "payslip_id": "mock-payslip-1",
+      "document_id": "mock-document-1",
+      "source_pages": [1],
+      "boundary_evidence": {
+        "signals": [],
+        "decision": "new_payslip",
+        "reason": "Mock fixture identifies a new payslip.",
+        "source_pages": [1]
+      },
+      "employer": {"name": "North Example Services", "abn": null, "fields": []},
+      "employee": {"name": "Test Worker 001", "employee_id": null, "fields": []},
+      "pay_period": {"start_date": null, "end_date": null, "payment_date": null, "frequency": null, "weeks_in_pay": null},
+      "employment": {"base_rate": null, "base_hours": null},
+      "currency": "AUD",
+      "field_metadata": {},
+      "line_items": [],
+      "totals": [],
+      "leave_balances": [],
+      "other_fields": [],
+      "reconciliation_checks": [],
+      "validation_errors": [],
+      "schema_repair_count": 0,
+      "status": "successful",
+      "issues": []
+    },
+    "01-two-employers__pages_1": {
+      "employer": {"name": "North Example Services", "abn": null, "fields": []},
+      "employee": {"name": "Test Worker 001", "employee_id": "SYN-001", "fields": []},
+      "pay_period": {"start_date": "01/10/2026", "end_date": "14/10/2026", "payment_date": "15/10/2026", "frequency": null, "weeks_in_pay": null},
+      "employment": {"base_rate": null, "base_hours": null}, "currency": "AUD", "field_metadata": {},
+      "line_items": [
+        {"item_id":"01-north-base","status":"complete","section":"Earnings","original_code":null,"original_label":"Base Pay","group_label":"Gross","date":null,"hours_or_units":"40","rate":"30.00","amount":"1200.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]},
+        {"item_id":"01-north-ot","status":"complete","section":"Earnings","original_code":null,"original_label":"OT 1.5x","group_label":"Overtime","date":null,"hours_or_units":"4","rate":"45.00","amount":"180.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]},
+        {"item_id":"01-north-tax","status":"complete","section":"Tax","original_code":null,"original_label":"PAYG","group_label":"PAYG withholding","date":null,"hours_or_units":null,"rate":null,"amount":"-200.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]}
+      ],
+      "totals": [
+        {"total_id":"01-north-gross","original_label":"Gross","total_type":"gross_pay","amount":"1380.00","currency":"AUD","source_page":1,"issues":[]},
+        {"total_id":"01-north-net","original_label":"Net","total_type":"net_pay","amount":"1180.00","currency":"AUD","source_page":1,"issues":[]}
+      ], "leave_balances":[], "other_fields":[], "reconciliation_checks":[], "validation_errors":[], "schema_repair_count":0, "status":"successful", "issues":[]
+    },
+    "01-two-employers__pages_2": {
+      "employer": {"name": "South Example Workshop", "abn": null, "fields": []},
+      "employee": {"name": "Test Worker 001", "employee_id": "SOUTH-8", "fields": []},
+      "pay_period": {"start_date": "05/10/2026", "end_date": "11/10/2026", "payment_date": "16/10/2026", "frequency": null, "weeks_in_pay": null},
+      "employment": {"base_rate": null, "base_hours": null}, "currency": "AUD", "field_metadata": {},
+      "line_items": [
+        {"item_id":"01-south-ordinary","status":"complete","section":"Earnings","original_code":null,"original_label":"Ordinary Hours","group_label":"Gross","date":null,"hours_or_units":"20","rate":"40.00","amount":"800.00","ytd_amount":null,"currency":"AUD","source_page":2,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]},
+        {"item_id":"01-south-tool","status":"complete","section":"Earnings","original_code":null,"original_label":"Tool Allowance","group_label":"Allowances","date":null,"hours_or_units":"1","rate":"40.00","amount":"40.00","ytd_amount":null,"currency":"AUD","source_page":2,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]},
+        {"item_id":"01-south-tax","status":"complete","section":"Tax","original_code":null,"original_label":"Tax","group_label":"PAYG withholding","date":null,"hours_or_units":null,"rate":null,"amount":"-100.00","ytd_amount":null,"currency":"AUD","source_page":2,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]}
+      ],
+      "totals": [
+        {"total_id":"01-south-gross","original_label":"Total gross","total_type":"gross_pay","amount":"840.00","currency":"AUD","source_page":2,"issues":[]},
+        {"total_id":"01-south-net","original_label":"Net","total_type":"net_pay","amount":"740.00","currency":"AUD","source_page":2,"issues":[]}
+      ], "leave_balances":[], "other_fields":[], "reconciliation_checks":[], "validation_errors":[], "schema_repair_count":0, "status":"successful", "issues":[]
+    },
+    "02-multipage-payslip__pages_1-2": {
+      "employer":{"name":"North Example Services","abn":null,"fields":[]}, "employee":{"name":"Test Worker 001","employee_id":"SYN-MULTI-01","fields":[]},
+      "pay_period":{"start_date":"15/10/2026","end_date":"28/10/2026","payment_date":"29/10/2026","frequency":null,"weeks_in_pay":null}, "employment":{"base_rate":null,"base_hours":null}, "currency":"AUD", "field_metadata":{},
+      "line_items":[
+        {"item_id":"02-base","status":"complete","section":"Earnings","original_code":null,"original_label":"Base Pay","group_label":"Gross","date":null,"hours_or_units":"40","rate":"30.00","amount":"1200.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]},
+        {"item_id":"02-ot","status":"complete","section":"Earnings","original_code":null,"original_label":"Overtime","group_label":"Overtime","date":null,"hours_or_units":"4","rate":"45.00","amount":"180.00","ytd_amount":null,"currency":"AUD","source_page":2,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]},
+        {"item_id":"02-tax","status":"complete","section":"Tax","original_code":null,"original_label":"PAYG","group_label":"PAYG withholding","date":null,"hours_or_units":null,"rate":null,"amount":"-200.00","ytd_amount":null,"currency":"AUD","source_page":2,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]}
+      ], "totals":[{"total_id":"02-gross","original_label":"Gross","total_type":"gross_pay","amount":"1380.00","currency":"AUD","source_page":2,"issues":[]},{"total_id":"02-net","original_label":"Net","total_type":"net_pay","amount":"1180.00","currency":"AUD","source_page":2,"issues":[]}], "leave_balances":[],"other_fields":[],"reconciliation_checks":[],"validation_errors":[],"schema_repair_count":0,"status":"successful","issues":[]
+    },
+    "03-pay-summary__pages_1": {
+      "employer":{"name":"South Example Workshop","abn":null,"fields":[]}, "employee":{"name":"Test Worker 001","employee_id":null,"fields":[]}, "pay_period":{"start_date":null,"end_date":null,"payment_date":null,"frequency":null,"weeks_in_pay":null}, "employment":{"base_rate":null,"base_hours":null}, "currency":"AUD", "field_metadata":{},
+      "line_items":[
+        {"item_id":"03-1","status":"complete","section":"Pay summary","original_code":null,"original_label":"Ordinary Hours","group_label":"Gross","date":"08/10/2026","hours_or_units":null,"rate":null,"amount":"800.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]},
+        {"item_id":"03-2","status":"complete","section":"Pay summary","original_code":null,"original_label":"Tool Allowance","group_label":"Allowances","date":"08/10/2026","hours_or_units":null,"rate":null,"amount":"40.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]},
+        {"item_id":"03-3","status":"complete","section":"Pay summary","original_code":null,"original_label":"Ordinary Hours","group_label":"Gross","date":"15/10/2026","hours_or_units":null,"rate":null,"amount":"900.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]},
+        {"item_id":"03-4","status":"complete","section":"Pay summary","original_code":null,"original_label":"Annual Leave","group_label":"Paid leave","date":"15/10/2026","hours_or_units":null,"rate":null,"amount":"160.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]}
+      ], "totals":[],"leave_balances":[],"other_fields":[],"reconciliation_checks":[],"validation_errors":[],"schema_repair_count":0,"status":"successful","issues":[]
+    },
+    "04-duplicates-conflicts__pages_1": {
+      "employer":{"name":"North Example Services","abn":null,"fields":[]}, "employee":{"name":"Test Worker 001","employee_id":null,"fields":[]}, "pay_period":{"start_date":"01/11/2026","end_date":"07/11/2026","payment_date":"08/11/2026","frequency":null,"weeks_in_pay":null}, "employment":{"base_rate":null,"base_hours":null}, "currency":"AUD", "field_metadata":{},
+      "line_items":[
+        {"item_id":"04-base","status":"complete","section":"Earnings","original_code":null,"original_label":"Base Pay","group_label":"Gross","date":null,"hours_or_units":"20","rate":"40.00","amount":"800.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]},
+        {"item_id":"04-meal-1","status":"complete","section":"Earnings","original_code":null,"original_label":"Meal Allowance","group_label":"Allowances","date":null,"hours_or_units":null,"rate":null,"amount":"30.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]},
+        {"item_id":"04-meal-2","status":"complete","section":"Earnings","original_code":null,"original_label":"Meal Allowance","group_label":"Allowances","date":null,"hours_or_units":null,"rate":null,"amount":"30.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]}
+      ], "totals":[{"total_id":"04-gross-1","original_label":"Printed gross","total_type":"gross_pay","amount":"860.00","currency":"AUD","source_page":1,"issues":[]},{"total_id":"04-gross-2","original_label":"Printed gross","total_type":"gross_pay","amount":"890.00","currency":"AUD","source_page":1,"issues":[]}], "leave_balances":[],"other_fields":[],"reconciliation_checks":[],"validation_errors":[],"schema_repair_count":0,"status":"successful","issues":[]
+    },
+    "05-partial-and-unresolved__pages_1": {
+      "employer":{"name":"North Example Services","abn":null,"fields":[]}, "employee":{"name":"Test Worker 001","employee_id":null,"fields":[]}, "pay_period":{"start_date":"08/11/2026","end_date":"14/11/2026","payment_date":"15/11/2026","frequency":null,"weeks_in_pay":null}, "employment":{"base_rate":null,"base_hours":null}, "currency":"AUD", "field_metadata":{},
+      "line_items":[{"item_id":"05-base","status":"complete","section":"Earnings","original_code":null,"original_label":"Base Pay","group_label":"Gross","date":null,"hours_or_units":"20","rate":"40.00","amount":"800.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]},{"item_id":"05-meal","status":"unreadable","section":"Earnings","original_code":null,"original_label":"Meal Allowance","group_label":"Allowances","date":null,"hours_or_units":null,"rate":null,"amount":null,"ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]}], "totals":[{"total_id":"05-gross","original_label":"Gross","total_type":"gross_pay","amount":"830.00","currency":"AUD","source_page":1,"issues":[]}], "leave_balances":[],"other_fields":[],"reconciliation_checks":[],"validation_errors":[],"schema_repair_count":0,"status":"partial","issues":[]
+    },
+    "05-partial-and-unresolved__pages_3": {
+      "employer":{"name":"South Example Workshop","abn":null,"fields":[]}, "employee":{"name":"Test Worker 001","employee_id":null,"fields":[]}, "pay_period":{"start_date":"08/11/2026","end_date":"14/11/2026","payment_date":"15/11/2026","frequency":null,"weeks_in_pay":null}, "employment":{"base_rate":null,"base_hours":null}, "currency":"AUD", "field_metadata":{},
+      "line_items":[{"item_id":"05-south-ordinary","status":"complete","section":"Earnings","original_code":null,"original_label":"Ordinary Hours","group_label":"Gross","date":null,"hours_or_units":"10","rate":"40.00","amount":"400.00","ytd_amount":null,"currency":"AUD","source_page":3,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]}], "totals":[{"total_id":"05-south-gross","original_label":"Gross","total_type":"gross_pay","amount":"400.00","currency":"AUD","source_page":3,"issues":[]}], "leave_balances":[],"other_fields":[],"reconciliation_checks":[],"validation_errors":[],"schema_repair_count":0,"status":"successful","issues":[]
+    },
+    "06-total-mismatch__pages_1": {
+      "employer":{"name":"North Example Services","abn":null,"fields":[]}, "employee":{"name":"Test Worker 001","employee_id":null,"fields":[]}, "pay_period":{"start_date":"15/11/2026","end_date":"21/11/2026","payment_date":"22/11/2026","frequency":null,"weeks_in_pay":null}, "employment":{"base_rate":null,"base_hours":null}, "currency":"AUD", "field_metadata":{},
+      "line_items":[{"item_id":"06-base","status":"complete","section":"Earnings","original_code":null,"original_label":"Base Pay","group_label":"Gross","date":null,"hours_or_units":null,"rate":null,"amount":"800.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]},{"item_id":"06-meal","status":"complete","section":"Earnings","original_code":null,"original_label":"Meal Allowance","group_label":"Allowances","date":null,"hours_or_units":null,"rate":null,"amount":"30.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]},{"item_id":"06-tax","status":"complete","section":"Tax","original_code":null,"original_label":"PAYG","group_label":"PAYG withholding","date":null,"hours_or_units":null,"rate":null,"amount":"-100.00","ytd_amount":null,"currency":"AUD","source_page":1,"source_location":null,"ocr_confidence":null,"mapping_method":"rule","mapping_confidence":1.0,"issues":[]}], "totals":[{"total_id":"06-gross","original_label":"Printed gross","total_type":"gross_pay","amount":"831.00","currency":"AUD","source_page":1,"issues":[]},{"total_id":"06-net","original_label":"Net","total_type":"net_pay","amount":"731.00","currency":"AUD","source_page":1,"issues":[]}], "leave_balances":[],"other_fields":[],"reconciliation_checks":[],"validation_errors":[],"schema_repair_count":0,"status":"successful","issues":[]
+    }
+  },
+  "classify_unfamiliar_group_labels": {
+    "default": {
+      "item_id": "mock-item-1",
+      "group_label": "Unknown",
+      "mapping_method": "llm",
+      "mapping_confidence": null
+    }
+  },
+  "schema_repair_once": {
+    "default": {
+      "patch": {},
+      "repaired_field_paths": []
+    }
+  },
+  "interpret_total_relationships": {
+    "default": {
+      "terms": [
+        {"source_type":"pay_item","source_record_id": "mock-item-1", "multiplier": 1, "reason": "Printed gross contributor."}
+      ],
+      "explanation": "Mock signed relationship."
+    },
+    "01-north-gross": {"terms":[{"source_type":"pay_item","source_record_id":"01-north-base","multiplier":1,"reason":"Gross earning."},{"source_type":"pay_item","source_record_id":"01-north-ot","multiplier":1,"reason":"Gross overtime."}],"explanation":"Gross contributors."},
+    "01-north-net": {"terms":[{"source_type":"pay_item","source_record_id":"01-north-base","multiplier":1,"reason":"Earning."},{"source_type":"pay_item","source_record_id":"01-north-ot","multiplier":1,"reason":"Earning."},{"source_type":"pay_item","source_record_id":"01-north-tax","multiplier":1,"reason":"Signed withholding."}],"explanation":"Net contributors."},
+    "01-south-gross": {"terms":[{"source_type":"pay_item","source_record_id":"01-south-ordinary","multiplier":1,"reason":"Gross earning."},{"source_type":"pay_item","source_record_id":"01-south-tool","multiplier":1,"reason":"Allowance."}],"explanation":"Gross contributors."},
+    "01-south-net": {"terms":[{"source_type":"pay_item","source_record_id":"01-south-ordinary","multiplier":1,"reason":"Earning."},{"source_type":"pay_item","source_record_id":"01-south-tool","multiplier":1,"reason":"Allowance."},{"source_type":"pay_item","source_record_id":"01-south-tax","multiplier":1,"reason":"Signed withholding."}],"explanation":"Net contributors."},
+    "02-gross": {"terms":[{"source_type":"pay_item","source_record_id":"02-base","multiplier":1,"reason":"Gross earning."},{"source_type":"pay_item","source_record_id":"02-ot","multiplier":1,"reason":"Gross overtime."}],"explanation":"Gross contributors."},
+    "02-net": {"terms":[{"source_type":"pay_item","source_record_id":"02-base","multiplier":1,"reason":"Earning."},{"source_type":"pay_item","source_record_id":"02-ot","multiplier":1,"reason":"Earning."},{"source_type":"pay_item","source_record_id":"02-tax","multiplier":1,"reason":"Signed withholding."}],"explanation":"Net contributors."},
+    "04-gross-1": {"terms":[],"explanation":"Conflicting printed gross values prevent a supported selection."},
+    "04-gross-2": {"terms":[],"explanation":"Conflicting printed gross values prevent a supported selection."},
+    "05-gross": {"terms":[{"source_type":"pay_item","source_record_id":"05-base","multiplier":1,"reason":"Readable earning."},{"source_type":"pay_item","source_record_id":"05-meal","multiplier":1,"reason":"Printed allowance has unreadable amount."}],"explanation":"Includes unreadable contributor."},
+    "05-south-gross": {"terms":[{"source_type":"pay_item","source_record_id":"05-south-ordinary","multiplier":1,"reason":"Gross earning."}],"explanation":"Gross contributor."},
+    "06-gross": {"terms":[{"source_type":"pay_item","source_record_id":"06-base","multiplier":1,"reason":"Gross earning."},{"source_type":"pay_item","source_record_id":"06-meal","multiplier":1,"reason":"Allowance."}],"explanation":"Gross contributors."},
+    "06-net": {"terms":[{"source_type":"printed_total","source_record_id":"06-gross","multiplier":1,"reason":"The payslip presents net as printed gross less signed withholding."},{"source_type":"pay_item","source_record_id":"06-tax","multiplier":1,"reason":"Signed withholding."}],"explanation":"The displayed structure supports printed gross plus signed withholding."}
+  },
+  "llm_as_a_judge": {
+    "default": {
+      "judge_outcome": "inconclusive",
+      "judge_reason": "Mock judge has insufficient evidence."
+    },
+    "possible_extraction_error": {
+      "judge_outcome": "possible_extraction_error",
+      "judge_reason": "Printed amount and extracted value appear inconsistent.",
+      "affected_field_paths": ["line_items.0.amount"]
+    },
+    "possible_item_selection_error": {
+      "judge_outcome": "possible_reconciliation_item_selection_error",
+      "judge_reason": "The selected contributors may be incomplete."
+    }
+  },
+  "retry_affected_extraction": {
+    "default": {
+      "patch": {},
+      "affected_field_paths": []
+    }
+  },
+  "retry_reconciliation_item_selection": {
+    "default": {
+      "terms": [],
+      "explanation": "Mock retry remains unable to select supported contributors."
+    }
+  }
+}

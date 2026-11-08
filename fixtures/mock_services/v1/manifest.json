@@ -1,0 +1,10 @@
+{
+  "fixture_version": "mock-services-v1",
+  "schema_version": 1,
+  "mock_only": true,
+  "description": "Synthetic adapter responses; not live Azure Document Intelligence or GPT output.",
+  "files": {
+    "document_intelligence": "document_intelligence.json",
+    "llm_responses": "llm_responses.json"
+  }
+}
